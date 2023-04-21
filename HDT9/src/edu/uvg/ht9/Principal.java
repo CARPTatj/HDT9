@@ -3,61 +3,64 @@ package edu.uvg.ht9;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
-public class Principal{
+public class Principal {
     public static void main(String[] args) {
-        Archivo archivo = new Archivo("./Spanish.txt");
-        ArrayList<String> lineas = archivo.leerArchivo();
-        Archivo archivo1 = new Archivo("./texto.txt");
-        ArrayList<String> oraciones = archivo1.leerArchivo();
-        ArrayList<Palabra> diccionario = new ArrayList<Palabra>();
-        Scanner teclado = new Scanner(System.in);
-        factory generador = new factory();
-        IEstructuraArbol<Palabra> arbol;
-        ArrayList<String> verificar = new ArrayList<String>();
+        Archivo diccionarioArchivo = new Archivo("./Spanish.txt");
+        ArrayList<String> lineasDiccionario = diccionarioArchivo.leerArchivo();
 
-        for(String palabras : lineas){
-            String[] palabra = palabras.split(",");
-            diccionario.add(new Palabra(palabra[0], palabra[1]));
-            verificar.add(palabra[0]);
-        }
+        Archivo oracionesArchivo = new Archivo("./texto.txt");
+        ArrayList<String> lineasOraciones = oracionesArchivo.leerArchivo();
 
-        try{
-            System.out.println("Que tipo de arbol desea usar?: \n1. Arbol red black \n2. Arbol splay \n3. Arbol binario");
-            int tipo = teclado.nextInt();
-            teclado.nextLine();
-            arbol = generador.getIstance(tipo);
-            for(Palabra val1 : diccionario){
-                arbol.add(val1);
-            }
-            for(String oracion : oraciones){
-                String[] oracionSeparada = oracion.split(" ");
-                ArrayList<String> oracionTraducida = new ArrayList<String>();
-                String traduccion = "";
-                for(String individual : oracionSeparada){
-                    if(verificar.contains(individual)){
-                        Palabra val2 = arbol.get(new Palabra(individual, ""));
-                        oracionTraducida.add(val2.getSpanish());
-                    }
-                    else{
-                        String val3 = "*"+individual+"*";
-                        oracionTraducida.add(val3); 
-                    }
+        ArrayList<Palabra> diccionario = new ArrayList<>();
+        ArrayList<String> palabrasVerificadas = new ArrayList<>();
 
-                }
-                for(String palabra : oracionTraducida){
-                    traduccion = traduccion + palabra+ " ";
-                }
-                System.out.println("Oración traducida: ");
-                System.out.println(traduccion+"\n");
-            }
-
-        } catch (Exception e){
-            teclado.nextLine();
-            System.out.println("Ingreso algo incorrecto");
-        }
-
+        String menu = "¿Qué arbol desea utilizar?" + "\n1. Arbol red Black " + "\n2. Arbol Splay" + "\n3. Arbol Binario";
         
+        Scanner teclado = new Scanner(System.in);
+        IEstructuraArbol<Palabra> arbol = null;
+
+        for (String linea : lineasDiccionario) {
+            String[] partes = linea.split(",");
+            Palabra palabra = new Palabra(partes[0], partes[1]);
+            diccionario.add(palabra);
+            palabrasVerificadas.add(palabra.getEnglish());
+        }
+
+        try {
+            System.out.println(menu);
+
+            int opcion = teclado.nextInt();
+            teclado.nextLine();
+
+            factory factoryArbol = new factory();
+            arbol = factoryArbol.getInstance(opcion);
+
+            for (Palabra palabra : diccionario) {
+                arbol.add(palabra);
+            }
+
+            for (String linea : lineasOraciones) {
+                String[] palabras = linea.split(" ");
+                ArrayList<String> palabrasTraducidas = new ArrayList<>();
+
+                for (String palabra : palabras) {
+                    if (palabrasVerificadas.contains(palabra)) {
+                        Palabra palabraBuscada = arbol.get(new Palabra(palabra, ""));
+                        palabrasTraducidas.add(palabraBuscada.getSpanish());
+                    } else {
+                        palabrasTraducidas.add("*" + palabra + "*");
+                    }
+                }
+
+                String lineaTraducida = String.join(" ", palabrasTraducidas);
+                System.out.println("Traducción:");
+                System.out.println(lineaTraducida);
+                System.out.println();
+            }
+        } catch (Exception e) {
+            System.out.println("Por favor de ingresar solamente datos correctos");
+        } finally {
+            teclado.close();
+        }
     }
 }

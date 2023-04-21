@@ -10,7 +10,7 @@ package edu.uvg.ht9;
 public class factory {
     private IEstructuraArbol<Palabra> result;
 
-    public IEstructuraArbol<Palabra> getIstance(int tipo){
+    public IEstructuraArbol<Palabra> getInstance(int tipo){
 
         switch(tipo){
             case 1:
