@@ -9,11 +9,14 @@ import edu.uvg.ht9.ArbolHashMap;
 import edu.uvg.ht9.IKeyGenerator;
 import edu.uvg.ht9.ObtenerLlaveDesdePalabra;
 import edu.uvg.ht9.Palabra;
+
+import java.beans.Transient;
 import java.util.HashMap;
 import edu.uvg.ht9.ComparadorPalabras;
 import edu.uvg.ht9.Palabra;
 import edu.uvg.ht9.ArbolBinarioBusqueda;
 import edu.uvg.ht9.*;
+import structure5.RedBlackSearchTree;
 import structure5.SplayTree;
 
 
@@ -61,7 +64,7 @@ public class Tsts {
 		Palabra mibusqueda = miDiccionario.get(new Palabra("house", ""));
 		
 		assertEquals("house", mibusqueda.getEnglish());
-		assertEquals("casa", mibusqueda.getSpanish());
+		("casa", mibusqueda.getSpanish());
 		
 	}
 

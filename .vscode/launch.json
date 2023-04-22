@@ -1,0 +1,92 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch & Profile built-in server",
+            "type": "php",
+            "request": "launch",
+            "runtimeArgs": [
+                "-S",
+                "localhost",
+                "-t",
+                "./public"
+            ],
+            "profile": true,
+            "openProfile" : true,
+            "port": 9003,
+            "serverReadyAction": {
+                "action": "openExternally"
+            }
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "Principal",
+            "request": "launch",
+            "mainClass": "edu.uvg.ht9.Principal",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "ArrayIterator",
+            "request": "launch",
+            "mainClass": "structure5.ArrayIterator",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "FileStream",
+            "request": "launch",
+            "mainClass": "structure5.FileStream",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "GraphList",
+            "request": "launch",
+            "mainClass": "structure5.GraphList",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "SetVector",
+            "request": "launch",
+            "mainClass": "structure5.SetVector",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "SkewHeap",
+            "request": "launch",
+            "mainClass": "structure5.SkewHeap",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "Table",
+            "request": "launch",
+            "mainClass": "structure5.Table",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "Version",
+            "request": "launch",
+            "mainClass": "structure5.Version",
+            "projectName": "src"
+        },
+
+    ]
+}
