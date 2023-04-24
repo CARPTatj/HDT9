@@ -1,3 +1,10 @@
+/*
+* Alina Carías (22539)
+* Algoritmos y Estructuras de Datos Sección 40
+* Hoja de Trabajo 9
+* 21-04-2023
+* Clase Principal: clase que interactua con el usuario
+*/
 package edu.uvg.ht9;
 
 import java.util.ArrayList;
